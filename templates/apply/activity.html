@@ -1,0 +1,164 @@
+{% extends 'arya/layout.html' %}
+
+
+{% block title1 %}
+    <title>活动推广报批申请</title>
+{% endblock %}
+
+{% block css %}
+    <style>
+        .my-table .td1 {
+            text-align: center;
+        }
+
+        .my-table td div {
+            text-align: center;
+            border-left: 1px solid #8894BB;
+        }
+
+        .td-input {
+            padding: 3px !important;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row" style="margin-top: 50px">
+            <div class="col-md-10 col-md-offset-1">
+                <form method="POST">
+                {% csrf_token %}
+                <div style="text-align: center;padding:7px;font-size: 16px;font-weight: 800;color: white;background-color:#8894BB ">
+                    活动推广报批申请
+                </div>
+                <table class="my-table table table-bordered" style="table-layout: fixed">
+                    <tbody>
+                    <tr>
+                        <td class="td1" width="15%">申请部门</td>
+                        <td colspan="5" class="td1" width="55%" style="color: #9d9d9d">*{{ user_obj.department }}</td>
+                        <td colspan="2" class="td1" width="15%">填单人</td>
+                        <td colspan="2" class="td1" width="15%" style="color: #9d9d9d">*{{ user_obj.name }}</td>
+
+                    </tr>
+                    <tr>
+                        <td class="td1 needed" width="15%">表单摘要</td>
+                        <td colspan="9" width="85%" class="td-input"><input style="width: 300px" type="text"
+                                                                            placeholder="简述表单.,限15字以内"name="form"></td>
+                    </tr>
+                    <tr>
+                        <td width="15%" class="td1">推广产品名称</td>
+                        <td colspan="2" width="20%" class="td-input"><input style="width: 100%" type="text" name="product_name"></td>
+                        <td colspan="1" width="15%">推广产品版本</td>
+                        <td colspan="2" width="20%" class="td-input"><input style="width: 100%" type="text" name="product_version"></td>
+                        <td colspan="2" width="15%">推广产品平台</td>
+                        <td colspan="2" width="15%" class="td-input"><input style="width: 100%" type="text" name="advocate_platform"></td>
+                    </tr>
+                    <tr>
+                        <td class="td1" width="15%">推广方案描述</td>
+                        <td colspan="9" width="85%" class="td-input">
+                            <textarea name="advocate_des" id="" rows="1" style="width: 100%"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1" width="15%">申请原因</td>
+                        <td colspan="9">
+                            <input type="radio" name="apply_cause" value="1">提升收入
+                            <input type="radio" name="apply_cause" value="2">拉升在玩
+                            <input type="radio" name="apply_cause" value="3">增加注册
+                            <input type="radio" name="apply_cause" value="4">其他
+                            <input type="text" name="apply_other">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1" width="15%">预期效果</td>
+                        <td colspan="9" class="td-input">
+                            <textarea name="anticipate" id="" rows="1" style="width: 100%"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1" width="15%">首次推广</td>
+                        <td colspan="9" class="td-input">
+                            <input style="margin-left: 10px" type="radio" name="fg" value="1">是
+                            <input style="margin-left: 10px" type="radio" name="fg" value="2">否
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1" width="15%">上期同类推广</br>效果反馈</td>
+                        <td colspan="9" class="td-input">
+                            <textarea name="before_result" id="" rows="2" style="width: 100%"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1" width="15%">需要申购物品</td>
+                        <td colspan="9" class="td-input">
+                            <input style="margin-left: 10px" type="radio" name="bg" value="1">是
+                            <input style="margin-left: 10px" type="radio" name="bg" value="2">否
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1 needed" width="15%">付款公司</td>
+                        <td colspan="2" class="td-input"><select class="form-control" style="width: 100%" type="text" name="payer">
+                            {% for obj in company_list %}
+                                <option value="{{ obj.pk }}">{{ obj.name }}</option>
+                            {% endfor %}
+                        </select>
+                        </td>
+                        <td class="needed">预算金额</td>
+                        <td class="td-input"><input style="width: 100%" type="text" name="budget" class="form-control"></td>
+                       <td colspan="1">货币类型</td>
+                        <td colspan="2" class="td-input"><select name="currency_type"class="form-control" style="width: 100%;">
+                            <option value="1">人民币</option>
+                            <option value="2">美元</option>
+                            </select>
+                        </td>
+                        <td colspan="1">大写</td>
+                        <td colspan="1"></td>
+                    <tr>
+                        <td class="td1" width="15%">紧急程度</td>
+                        <td colspan="9" class="td-input">
+                            <input style="margin-left: 10px" type="radio" name="exigence" value="1">紧急
+                            <input style="margin-left: 10px" type="radio" name="exigence" value="2">不紧急
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1" width="15%">上传附件</td>
+                        <td colspan="9" class="td-input">
+                            <input type="file">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1" width="15%">备注</td>
+                        <td colspan="9" class="td-input">
+                            <textarea name="remarks" id="" rows="1" style="width: 100%"></textarea>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <div style="text-align: center;margin-top: 20px">
+                    <button class="btn btn-primary">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--something to clone-->
+    <div class="hide myClone" id="myClone">
+        <span style="display: inline-block;color: #FF818C;margin-left: 3px"><strong>※</strong></span>
+    </div>
+
+
+    <script>
+        $(".needed").each(function () {
+
+            $(this).append($(".myClone span").clone())
+        })
+
+    </script>
+
+
+{% endblock %}
+

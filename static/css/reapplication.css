@@ -1,0 +1,55 @@
+/**
+报销申请单
+*/
+
+
+/*
+报销申请单---------------
+*/
+.lineP{
+     padding: 0;
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+/*
+各个报销 div总体布局
+*/
+.Reapplication{
+    background-color: whitesmoke;
+    margin-right: 15px;
+    margin-top: 15px;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    height: 60px;
+    width: 230px;
+    color:black;
+    font-size: 16px;
+
+
+}
+
+/**
+div中的文字样式
+*/
+.Reapplication >p{
+    display: inline-block;
+    float: left;
+    margin-top: 18px;
+}
+
+/**
+div中">" 样式
+*/
+.Reapplication> span{
+    display: inline-block;
+    float: right;
+    margin-top: 20px;
+    color: gainsboro;
+    font-size: 14px;
+}
+
+
+/**
+报销申请单结束
+*/

@@ -1,0 +1,84 @@
+{% extends 'arya/layout.html' %}
+{% load staticfiles %}
+
+{% block title1 %}
+    <title>我的申请</title>
+{% endblock %}
+
+{% block content %}
+<form class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="流水单号/摘要">
+  </div>
+    <div class="form-group">
+        <select type="text" class="form-control">
+            <option value="">选择类型</option>
+            {% for secondtype in secondtype_obj_list %}
+                    <option value="">{{ secondtype.name}}</option>
+            {% endfor %}
+        </select>
+  </div>
+    <div class="form-group">
+        <span>从</span>
+    <input type="text" class="form-control" placeholder="起始日期">
+  </div>
+    <div class="form-group">
+        <span>到</span>
+    <input type="text" class="form-control" placeholder="截止日期">
+  </div>
+    <div class="form-group">
+        <select type="text" class="form-control">
+            <option value="">选择状态</option>
+             <option value="">审核通过</option>
+            <option value="">审核通过/已付款</option>
+        </select>
+  </div>
+    <div class="form-group">
+        <select type="text" class="form-control">
+            <option value="">付款状态</option>
+             <option value="">已付款</option>
+            <option value="">未付款</option>
+        </select>
+  </div>
+  <button type="submit" class="btn btn-accessful">搜索</button>
+</form>
+ <div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>流水号</th>
+            <th>表单类型</th>
+            <th>申请时间</th>
+            <th>金额</th>
+            <th>状态</th>
+            <th>申请人</th>
+            <th>个人备注</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+                {% for record in record_obj %}
+                    <tr>
+                        <td><a href="/arya/scallop/baseapply/my_apply_detail/{{ record.apply_for.pk }}/">{{ record.apply_for.apply_id  }}</a></td>
+                        <td>{{ record.apply_type.name }}<span style="color: red">({{ record.apply_for.get_exigence_display }})</span></td>
+                        <td>{{ record.operate_time|date:'Y-m-d G:H' }}</td>
+                        {% if record.apply_for.currency_type == 1 %}
+                            <td>{{ record.apply_for.budget }}RMB(元)</td>
+                            {% else %}
+                            <td>{{ record.bapply_for.budget }}USD(美元)</td>
+                        {% endif %}
+                        <td>{{ record.get_status_display }}</td>
+                        <td>{{ record.operate.name }}</td>
+                        <td>{{ record.note }}</td>
+                        <td></td>
+                    </tr>
+                {% endfor %}
+
+        </tbody>
+</table>
+
+
+ </div>
+
+
+{% endblock %}

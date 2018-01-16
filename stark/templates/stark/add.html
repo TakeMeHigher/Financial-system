@@ -1,0 +1,13 @@
+{% extends 'stark/base.html' %}
+{% load change_form %}
+
+{% block body %}
+
+    <h1>添加页面</h1>
+{# {% include 'stark/form.html' %}#}
+    {% changeForm config form %}
+
+    {#第一个form是自定义标签#}
+{#第2个form是后端传过来的form对象#}
+
+{% endblock  %}

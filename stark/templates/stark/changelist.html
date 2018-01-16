@@ -1,0 +1,103 @@
+{% extends 'stark/base.html' %}
+
+{% block css %}
+    <style>
+        .list-filter a {
+            display: inline-block;
+            padding: 3px 6px;
+            border: 1px solid #2e6da4;
+            margin: 3px 0;
+        }
+
+        .list-filter a.active {
+            background-color: #2e6da4;
+            color: white;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1>列表页面</h1>
+    {% if cl.show_combine_seach %}
+        <div class="list-filter">
+            {% for filter_row in  cl.get_combine_seach_filter %}
+                <div>
+                    {% for col in filter_row %}
+                        {{ col }}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
+
+    {% if cl.add_btn %}
+        <p>
+            <a href="{{ cl.add_url }}">
+                <button class="btn btn-primary">添加</button>
+            </a>
+        </p>
+    {% endif %}
+
+    {% if cl.show_search_form %}
+        <form method="get" style="padding-left:0;float: right">
+
+            <div class="form-group" style="display: inline-block">
+                <input type="text" name="{{ cl.config.search_key }}" value="{{ cl.search_form_val }}"
+                       class="form-control" placeholder="Search" style="width:200px">
+
+            </div>
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+
+        </form>
+
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {% if cl.show_action %}
+            <div class="form-group">
+                <select name="list_action" class="form-control" style="display:inline-block;width: 200px;">
+                    <option>--------请选择---------</option>
+                    {% for item in cl.modify_actions %}
+
+                        <option value="{{ item.name }}">{{ item.text }}</option>
+                    {% endfor %}
+
+                </select>
+                <button class="btn btn-primary">执行</button>
+            </div>
+        {% endif %}
+
+
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                {% for head in cl.head_list %}
+                    <th>{{ head }}</th>
+                {% endfor %}
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for data_list in cl.body_list %}
+                <tr>
+                    {% for data in data_list %}
+                        <td> {{ data }}</td>
+                    {% endfor %}
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </form>
+    <nav aria-label="Page navigation">
+        <ul class="pagination ">
+            {{ cl.pageObj.page_html|safe }}
+        </ul>
+    </nav>
+
+{% endblock %}

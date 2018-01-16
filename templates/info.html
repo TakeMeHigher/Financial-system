@@ -1,0 +1,64 @@
+{% extends 'arya/layout.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/info.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1" id="notice">
+            <span class="glyphicon glyphicon-volume-down"></span>
+            <p>展示所有的相关信息！</p>
+            <button class="btn btn-info"><span class="caret"></span>展开</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-lg-offset-1 lineP">
+            <p>
+                常用申请-------------------------------------------------------------------------------------------------------------------------------------</p>
+        </div>
+        <div class="col-md-10 col-lg-offset-1" id="commonaApplication">
+
+            <div>
+                <a href="">
+                    <button>活动推广报批</button>
+                </a>
+                <a href="">
+                    <button>通用报销</button>
+                </a>
+                <a href="">
+                    <button>通用借款</button>
+                </a>
+                <a href="">
+                    <button>通用付款</button>
+                </a>
+                <a href="">
+                    <button>预付账款入费用</button>
+                </a>
+                <button class="btn btn-info seeAllBtn"><span class="caret"></span>查看全部</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-lg-offset-1 lineP">
+            <p>
+                财务制度-------------------------------------------------------------------------------------------------------------------------------------</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-lg-offset-1 lineP">
+            <p>
+                财务表单下载--------------------------------------------------------------------------------------------------------------------------------</p>
+        </div>
+
+        <div class="col-md-10 col-lg-offset-1 " id="formDownload">
+            <span class="glyphicon glyphicon-file"></span>
+            <span class="downLoadText">TA学习费用报销模板</span>
+            <a href="">
+                <span class="glyphicon glyphicon-download-alt"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

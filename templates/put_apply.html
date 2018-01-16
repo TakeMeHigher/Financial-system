@@ -1,0 +1,55 @@
+{% extends 'arya/layout.html' %}
+{% load staticfiles %}
+
+{% block title1 %}
+    <title>填写申请</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/reapplication.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    {#    {% for apply_type in apply_types %}#}
+    {#        <h3>{{ apply_type.name }}</h3>#}
+    {#    {% endfor %}#}
+
+    <div class="container">
+        {% for apply_type in apply_types %}
+            <div class="row">
+                <div class="col-md-offset-1">
+                    <p class="lineP">
+                        {{ apply_type.name }}-------------------------------------------------------------------------------------------------------------------------------------</p>
+                    {% for secondtype in apply_type.secondtype_set.all %}
+                        <a href="/apply/{{ secondtype.url }}/">
+                            <div class=" col-lg-3 Reapplication">
+                                <p>{{ secondtype.name }}</p>
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </div>
+                        </a>
+                    {% endfor %}
+
+
+
+{#                    <a href="">#}
+{#                        <div class=" col-lg-3 Reapplication">#}
+{#                            <p>营销费用报销</p>#}
+{#                            <span class="glyphicon glyphicon-chevron-right"></span>#}
+{#                        </div>#}
+{#                    </a>#}
+{##}
+{#                    <a href="">#}
+{#                        <div class=" col-lg-3 Reapplication">#}
+{#                            <p>员工俱乐部报销</p>#}
+{#                            <span class="glyphicon glyphicon-chevron-right"></span>#}
+{#                        </div>#}
+{#                    </a>#}
+
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
