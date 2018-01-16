@@ -23,7 +23,7 @@
     </style>
 {% endblock %}
 
-{% block content %}
+{% block body %}
     <div class="container">
         <div class="row" style="margin-top: 50px">
             <div class="col-md-10 col-md-offset-1">
@@ -36,7 +36,7 @@
                     <tbody>
                     <tr>
                         <td class="td1" width="15%">申请部门</td>
-                        <td colspan="5" class="td1" width="55%" style="color: #9d9d9d">*{{ user_obj.department }}</td>
+                        <td colspan="5" class="td1" width="55%" style="color: #9d9d9d">*{{ userinfo.department }}</td>
                         <td colspan="2" class="td1" width="15%">填单人</td>
                         <td colspan="2" class="td1" width="15%" style="color: #9d9d9d">*{{ user_obj.name }}</td>
 

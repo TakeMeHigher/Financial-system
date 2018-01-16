@@ -17,10 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from stark.service import v1
 from  finance import views
+from finance import apply
 urlpatterns = [
    # url(r'^admin/', admin.site.urls),
     url(r'^stark/', v1.site.urls),
     url(r'^login/', views.login),
     url(r'^index/', views.index),
-   url(r'^logout/$',views.logout),
+    url(r'^logout/$',views.logout),
+
+     url(r'^apply/(?P<apply_url>\w+)/',apply.apply)
 ]

@@ -10,7 +10,7 @@ def index(request):
     # print(request.path_info)
     # print(request.GET)
     # print(request.GET.urlencode())
-    return render(request,"index.html")
+    return render(request,"index.html",{"request":request})
 
 
 

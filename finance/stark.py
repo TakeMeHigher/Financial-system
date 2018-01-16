@@ -114,7 +114,7 @@ class BaseApplyConfig(v1.StarkConfig):
         print("___base_obj",base_obj)#暂时不会做了
 
         return HttpResponse("详情页")
-    def extra_urls(self):
+    def extra_url(self):
         app_model_name = self.model_class._meta.app_label, self.model_class._meta.model_name
 
         patterns = [

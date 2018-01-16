@@ -13,3 +13,7 @@
 .hide{
     display: none;
 }
+
+.item{
+   margin-top: 10px;
+}
