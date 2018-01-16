@@ -184,5 +184,5 @@ def activity_apply(request):
 def apply(request,apply_url):
     if  apply_url=='activityapply':
         return activity_apply(request)
-    # elif apply_url=='adminapply':
-    #     return  adminapply(request)
+    elif apply_url=='adminapply':
+        return  adminapply(request)
