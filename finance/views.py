@@ -33,3 +33,6 @@ def login(request):
         else:
             return render(request, "login.html")
 
+def logout(request):
+    request.session["user_info"] = None
+    return redirect("/login/")

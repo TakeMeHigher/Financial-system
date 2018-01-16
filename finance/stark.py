@@ -38,12 +38,34 @@ class RecordConfig(v1.StarkConfig):
     list_display = ["apply_for", "status", "operate", "operate_time"]
 
 
+    show_action = True
+
+
+    def multi_del(self, request):
+        id_list = request.POST.getlist('pk')
+        # print(id_list,'****------')
+        self.model_class.objects.filter(id__in=id_list).delete()
+        return redirect(self.get_list_url())
+
+    multi_del.short_desc = '批量删除'
+
+
+    action_func_list = [multi_del,]
+
+
+    show_search_form = True
+
+    search_fileds = ['apply_for',"status"]
+
+
 v1.site.register(models.Record, RecordConfig)
 
 
 # 推广活动申请表
 class ActivityApplyConfig(v1.StarkConfig):
     list_display = ["apply_id", "depart", "user"]
+
+
 
 
 v1.site.register(models.ActivityApply, ActivityApplyConfig)

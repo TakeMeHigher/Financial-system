@@ -7,12 +7,14 @@
     {% block title1 %} {% endblock %}
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{% static 'stark/bootstrap/css/bootstrap.min.css' %}"/>
-    <link rel="stylesheet" href="{% static 'stark/css/stark-form.css' %}"/>
+    <link rel="stylesheet" href="{% static 'stark/css/commons.css' %}"/>
+    <link rel="stylesheet" href="{% static 'rbac/rbac.css' %}"/>
 {#    <link rel="stylesheet" href="{% static 'arya/css/info.css' %}"/>#}
 
 
     {% block css %}{% endblock %}
     <script src="{% static 'stark/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'rbac/rbac.js' %}"></script>
 </head>
 <body>
 <div class="pg-header">
@@ -70,19 +72,19 @@
 {#                <span>信息汇总</span>#}
 {#            </a>#}
 {#        </div>#}
-        {% rbac_menu request %}
+        {% menu_html request %}
 
     </div>
     <div class="content">
         {% block breadcrumb %} {% endblock %}
 
-        {% block content %} {% endblock %}
+        {% block body %} {% endblock %}
     </div>
 </div>
 
 
 <script src="{% static 'stark/bootstrap/js/bootstrap.min.js' %}"></script>
-<script>{% rbac_js %}</script>
+
 
 {% block js %} {% endblock %}
 </body>

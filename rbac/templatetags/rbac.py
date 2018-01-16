@@ -6,7 +6,7 @@ register = Library()
 def menu_html(request):
     menu_list=request.session.get(settings.PERMISSIONS_MENU_KEY)
     currenturl=request.path_info
-
+    print(menu_list,'-------')
     menu_dict={}
     for item in menu_list:
         if not item["menu_gp_id"]:

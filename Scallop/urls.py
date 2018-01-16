@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^stark/', v1.site.urls),
     url(r'^login/', views.login),
     url(r'^index/', views.index),
+   url(r'^logout/$',views.logout),
 ]
