@@ -1,5 +1,18 @@
 from django.db import models
+
 from rbac.models import User, Role
+
+class Department(models.Model):
+    '''
+    部门表
+    '''
+    name = models.CharField(max_length=32, verbose_name="部门名称")
+
+    class Meta:
+        verbose_name_plural = "部门表"
+
+    def __str__(self):
+        return self.name
 
 
 class UserInfo(models.Model):
@@ -20,18 +33,6 @@ class UserInfo(models.Model):
     def __str__(self):
         return self.name
 
-
-class Department(models.Model):
-    '''
-    部门表
-    '''
-    name = models.CharField(max_length=32, verbose_name="部门名称")
-
-    class Meta:
-        verbose_name_plural = "部门表"
-
-    def __str__(self):
-        return self.name
 
 
 class Company(models.Model):

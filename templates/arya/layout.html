@@ -6,13 +6,13 @@
     <meta charset="UTF-8">
     {% block title1 %} {% endblock %}
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="{% static 'arya/plugins/bootstrap/css/bootstrap.css' %}"/>
-    <link rel="stylesheet" href="{% static 'arya/css/commons.css' %}"/>
+    <link rel="stylesheet" href="{% static 'stark/bootstrap/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'stark/css/stark-form.css' %}"/>
 {#    <link rel="stylesheet" href="{% static 'arya/css/info.css' %}"/>#}
-    <style>{% rbac_css %}</style>
+
 
     {% block css %}{% endblock %}
-    <script src="{% static 'arya/js/jquery-1.12.4.js' %}"></script>
+    <script src="{% static 'stark/js/jquery-3.2.1.min.js' %}"></script>
 </head>
 <body>
 <div class="pg-header">
@@ -31,7 +31,7 @@
 
         <div class="user-info right">
             <a href="#" class="avatar">
-                <img class="img-circle" src="{% static 'arya/img/default_avatar.png' %}">
+                <img class="img-circle" src="{% static 'stark/img/default_avatar.png' %}">
             </a>
 
             <div class="more-info">
@@ -81,7 +81,7 @@
 </div>
 
 
-<script src="{% static 'arya/plugins/bootstrap/js/bootstrap.js' %}"></script>
+<script src="{% static 'stark/bootstrap/js/bootstrap.min.js' %}"></script>
 <script>{% rbac_js %}</script>
 
 {% block js %} {% endblock %}

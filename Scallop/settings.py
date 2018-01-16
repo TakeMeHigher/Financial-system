@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'finance.apps.FinanceConfig',
     'rbac.apps.RbacConfig',
-    'stark.apps.StarkConfig'
+    'finance.apps.FinanceConfig',
+    'stark.apps.StarkConfig',
 
 ]
 
@@ -125,3 +125,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+
+PERMISSIONS_URL_DICT_KEY="permission_dict_url"
+PERMISSIONS_MENU_KEY="permissions_menu_key"
