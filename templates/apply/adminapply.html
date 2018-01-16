@@ -1,0 +1,165 @@
+{% extends 'arya/layout.html' %}
+
+
+{% block title1 %}
+    <title>行政采购报批申请</title>
+{% endblock %}
+
+{% block css %}
+    <style>
+        .my-table .td1 {
+            text-align: center;
+        }
+
+        .my-table td div {
+            text-align: center;
+            border-left: 1px solid #8894BB;
+        }
+
+        .td-input {
+            padding: 3px !important;
+        }
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row" style="margin-top: 50px">
+            <div class="col-md-10 col-md-offset-1">
+                <form method="POST">
+                {% csrf_token %}
+                <div style="text-align: center;padding:7px;font-size: 16px;font-weight: 800;color: white;background-color:#8894BB ">
+                    行政采购报批申请
+                </div>
+                <table class="my-table table table-bordered" style="table-layout: fixed">
+                    <tbody>
+                    <tr>
+                        <td class="td1" width="15%">申请部门</td>
+                        <td colspan="5" class="td1" width="55%" style="color: #9d9d9d">*{{ user_obj.department }}</td>
+                        <td colspan="2" class="td1" width="15%">填单人</td>
+                        <td colspan="2" class="td1" width="15%" style="color: #9d9d9d">*{{ user_obj.name }}</td>
+
+                    </tr>
+                    <tr>
+                        <td class="td1 needed" width="15%">表单摘要</td>
+                        <td colspan="9" width="85%" class="td-input"><input style="width: 300px" type="text"
+                                                                            placeholder="简述表单.,限15字以内"name="form"></td>
+                    </tr>
+                    <tr>
+                        <td width="15%" class="td1">采购类别</td>
+                        <td colspan="9">
+                            <input type="checkbox" value="1" name="goodtype">推广用品
+                            <input type="checkbox" value="2" name="goodtype">办公用品
+                            <input type="checkbox" value="3" name="goodtype">日用品
+                            <input type="checkbox" value="4" name="goodtype">食品
+                            <input type="checkbox" value="5" name="goodtype">测试机
+                            <input type="checkbox" value="6" name="goodtype">其他
+                            <input type="text" name="good_type_other">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1" width="15%">物品用途</td>
+                        <td colspan="9" width="85%" class="td-input">
+                            <textarea name="good_use" id="" rows="1" style="width: 100%"></textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>申购明细</td>
+                        <td colspan="9">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>物品名称</th>
+                                    <th>型号规格</th>
+                                    <th>数量</th>
+                                    <th>单价</th>
+                                    <th>备注</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td >1</td>
+                                    <td ><input style="width: 100px" type="text" name="goodname"></td>
+
+                                    <td><select name="goodmodel" id="">
+                                        <option value="1">大</option>
+                                        <option value="2">中</option>
+                                        <option value="3">小</option>
+                                    </select></td>
+                                    <td><input style="width: 100px"  type="number" name="godnum"></td>
+                                    <td><input  style="width: 100px" type="number" name="godprice"></td>
+                                    <td><input  style="width: 100px" type="text" name="godnote"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1 needed" width="15%">付款公司</td>
+                        <td colspan="2" class="td-input"><select class="form-control" style="width: 100%" type="text" name="payer">
+                            {% for obj in company_list %}
+                                <option value="{{ obj.pk }}">{{ obj.name }}</option>
+                            {% endfor %}
+                        </select>
+                        </td>
+                        <td class="needed">预算金额</td>
+                        <td class="td-input"><input style="width: 100%" type="text" name="budget" class="form-control"></td>
+                       <td colspan="1">货币类型</td>
+                        <td colspan="2" class="td-input"><select name="currency_type"class="form-control" style="width: 100%;">
+                            <option value="1">人民币</option>
+                            <option value="2">美元</option>
+                            </select>
+                        </td>
+                        <td colspan="1">大写</td>
+                        <td colspan="1"></td>
+                    <tr>
+                        <td class="td1" width="15%">紧急程度</td>
+                        <td colspan="9" class="td-input">
+                            <input style="margin-left: 10px" type="radio" name="exigence" value="1">紧急
+                            <input style="margin-left: 10px" type="radio" name="exigence" value="2">不紧急
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1" width="15%">上传附件</td>
+                        <td colspan="9" class="td-input">
+                            <input type="file">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1" width="15%">备注</td>
+                        <td colspan="9" class="td-input">
+                            <textarea name="remarks" id="" rows="1" style="width: 100%"></textarea>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <div style="text-align: center;margin-top: 20px">
+                    <button class="btn btn-primary">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--something to clone-->
+    <div class="hide myClone" id="myClone">
+        <span style="display: inline-block;color: #FF818C;margin-left: 3px"><strong>※</strong></span>
+    </div>
+
+
+    <script>
+        $(".needed").each(function () {
+
+            $(this).append($(".myClone span").clone())
+        })
+
+    </script>
+
+
+{% endblock %}
+

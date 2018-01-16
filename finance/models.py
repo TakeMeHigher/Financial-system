@@ -155,3 +155,35 @@ class ActivityApply(BaseApply):
     #     (2, '部门'),
     # ]
     # apply_type = models.SmallIntegerField('申请类型', choices=apply_type_choices)
+
+
+class Goods(models.Model):
+    caption=models.CharField(verbose_name='物品名称',max_length=32)
+    godmdoel_choice=(
+        (1,'大'),
+        (2,'中'),
+        (3,'小'))
+    godmdoel=models.IntegerField(choices=godmdoel_choice,verbose_name='物品型号')
+    num=models.IntegerField(verbose_name='数量')
+    price=models.DecimalField(max_digits=7,decimal_places=2,verbose_name='物品价格')
+    note=models.CharField(max_length=64,verbose_name='商品备注')
+
+#行政采购申请
+class AdminApply(BaseApply):
+    apply_type = models.ForeignKey(verbose_name="申请表类型", to="SecondType")
+    apply_name = models.CharField(verbose_name="申请表名称", default="行政采购申请表", max_length=32, editable=False)
+
+    purchase_choice=(
+        (1,'推广用品'),
+        (2,'办公用品'),
+        (3,'日用品'),
+        (4,'食品'),
+        (5,'测试机'),
+        (6,'其他')
+    )
+    purchase_type=models.IntegerField(choices=purchase_choice,verbose_name='采购类别')
+    gooduse=models.CharField(verbose_name='物品用途',max_length=120)
+    good=models.ManyToManyField(to=Goods,verbose_name='采购商品')
+    attachment = models.FileField(verbose_name="上传附件", upload_to='./upload/attachment/', null=True,
+                                  blank=True)  # 上传的文件以当前订单订单号为文件夹
+    note = models.CharField("备注", max_length=64, null=True)
